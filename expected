@@ -1,0 +1,27 @@
+; comments starts with ';' here ...
+; example file containing expected dns data
+
+$TTL 1h
+example.org.	A	93.184.216.34
+example.org.	MX	0 .
+
+;; uncomment the next lines to trigger error conditions
+
+;: this makes the file at all unparsable as rfc1035 zonefile
+; RFC 1025 incompatible line
+
+;; a non fully qualified name
+;; here, as the code uses '.' explicit as origin, this will work
+; example.com	MX	0 .
+
+;; an invalid label
+; example..org.	MX	0 .
+
+;; an invalid record type
+; example.org.	MY	0 .
+
+;; no record type at all
+; example.org.
+
+;; invalid record data
+; example.org.	MX	-1 .

@@ -1,0 +1,25 @@
+# comment starts with '#' here ...
+
+# example.org exist, but has no HINFO ressource record set
+# it is expected to receive 'NODATA'
+example.org.		HINFO 
+
+## uncomment the next lines to trigger error conditions
+
+## a non fully qualified name
+# example.com		MX
+
+## invalid label
+# example..org.		MX
+
+## an invalid record type
+# example.org.		MY
+
+## no record type at all, only one field
+# example.org.
+
+## not exactly two fields
+# example.org.		MX	0 .
+
+## unresolvable domain at all
+# example.4744b.	MX

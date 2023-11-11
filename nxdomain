@@ -1,0 +1,23 @@
+# comment starts with '#' here ...
+
+# check_dns_respond_as_expected.example.org and example.4744b. do not exist
+# it is expected to receive 'NXDOMAIN'
+check_dns_respond_as_expected.example.org.	HINFO
+example.4744b.					SOA
+
+## uncomment the next lines to trigger error conditions
+
+## a non fully qualified name
+# example.com		MX
+
+## an invalid label
+# example..org.		MX
+
+## an invalid record type
+# example.org.		MY
+
+## no record type at all, only one field
+# example.org.
+
+## not exactly two fields
+# example.org.		MX	0 .
