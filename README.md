@@ -72,4 +72,4 @@ label must contain a domain part and end with a dot.
 
 ## Return code
 
-The script's exit code is the number of unexpected data found
+The script's exit code is the number of unexpected data found.
