@@ -1,6 +1,7 @@
 # check_dns_respond_as_expected
 
-[![Actions Status](https://github.com/andreasschulze/check_dns_respond_as_expected/workflows/Markdownlint/badge.svg)](https://github.com/andreasschulze/check_dns_respond_as_expected/actions?query=workflow%3AMarkdownlint)
+[![markdownlint](https://github.com/andreasschulze/check_dns_respond_as_expected/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/andreasschulze/check_dns_respond_as_expected/actions/workflows/markdownlint.yml)
+[![pylint](https://github.com/andreasschulze/check_dns_respond_as_expected/actions/workflows/pylint.yml/badge.svg)](https://github.com/andreasschulze/check_dns_respond_as_expected/actions/workflows/pylint.yml)
 
 Challenge: you plan to modify a DNS resolver. You want to be sure, nothing
 will break. Define sample records with expected responses and let this script
