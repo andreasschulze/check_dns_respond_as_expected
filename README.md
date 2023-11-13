@@ -6,7 +6,7 @@
 Challenge: you plan to modify a DNS resolver. You want to be sure, nothing
 will break. Define sample records with expected responses and let this script
 check, every response from the DNS match the defined, expected value.
-Now, change your DNS resolver. Then recheck, every query still is answered
+Now, change your DNS resolver. Then recheck, every query is still answered
 with expected responses.
 
 ## Requirements
