@@ -20,8 +20,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
     - name: install requirements
-      run:
-        test -f requirements.txt && pip install -r requirements.txt
+      run: |
+        test -f requirements.txt && pip install -r requirements.txt || :
     - name: run pylint
       shell: sh
       run: |
