@@ -47,6 +47,13 @@ The script use the following environment variables:
 
   Default if unset: normal output
 
+* `RESOLVER_IP`
+
+  if set to *one* IPv4 or IPv6 address, the script use this address as
+  resolver.
+
+  Default os unset, so `/etc/resolv.conf` is used
+
 ## Usage
 
 Create a file with expected data. It's content is similar to a usual zone file

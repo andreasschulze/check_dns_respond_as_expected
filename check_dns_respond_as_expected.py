@@ -9,6 +9,7 @@ import re
 import os
 import sys
 
+import dns.exception
 import dns.resolver
 import dns.zone
 
@@ -27,7 +28,7 @@ def check_nxdomain_or_nodata(qname, qtype, expected_exception):
         sys.exit(1)
 
     try:
-        answer = dns.resolver.resolve(qname, qtype)
+        answer = res.resolve(qname, qtype)
     except expected_exception:
         logging.info('OK: %s/%s', qname, qtype)
         return 0
@@ -61,7 +62,14 @@ def check_expexted_data(filename):
 
     for qname, rdataset in expected_rrsets.iterate_rdatasets():
         qtype   = dns.rdatatype.to_text(rdataset.rdtype)
-        answers = dns.resolver.resolve(qname, qtype)
+        try:
+            answers = res.resolve(qname, qtype)
+        except dns.exception.DNSException as ex:
+            errors += 1
+            logging.error('ERROR: %s/%s returned unexpected answer: %s',
+                          qname, dns.rdatatype.to_text(rdataset.rdtype), repr(ex))
+            logging.debug('expected:\n%s\ngot:\n%s', 'NOERROR', answer_rdataset)
+            return 1
 
         answer_rdataset = dns.rdataset.Rdataset(dns.rdataclass.IN, rdataset.rdtype)
         answer_rdataset.update_ttl(rdataset.ttl)
@@ -148,10 +156,16 @@ LOG_LEVEL          = logging.INFO
 expected_data_file = os.getenv('EXPECTED_DATA_FILE', 'expected')
 nodata_file        = os.getenv('NODATA_FILE', 'nodata')
 nxdomain_file      = os.getenv('NXDOMAIN_FILE', 'nxdomain')
+res                = dns.resolver.Resolver()
+RESOLVER_IP        = os.getenv('RESOLVER_IP')
 
 if os.getenv('VERBOSE'):
     LOG_LEVEL = logging.DEBUG
 logging.basicConfig(format='%(message)s', level=LOG_LEVEL)
+
+if RESOLVER_IP:
+    res.nameservers = [ RESOLVER_IP ]
+    logging.info('using "%s" as resolver', RESOLVER_IP)
 
 if os.path.exists(expected_data_file):
     logging.debug('checking expected data from "%s" ...', expected_data_file)
