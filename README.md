@@ -52,7 +52,7 @@ The script use the following environment variables:
   if set to *one* IPv4 or IPv6 address, the script use this address as
   resolver.
 
-  Default os unset, so `/etc/resolv.conf` is used
+  Default if unset: use `/etc/resolv.conf`
 
 ## Usage
 
