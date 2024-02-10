@@ -2,6 +2,7 @@ name: markdownlint
 on:
   push:
   pull_request:
+  workflow_dispatch:
   schedule:
     - cron: '2 2 1 * *'
 jobs:
