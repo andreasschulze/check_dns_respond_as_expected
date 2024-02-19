@@ -68,8 +68,7 @@ def check_expexted_data(filename):
             errors += 1
             logging.error('ERROR: %s/%s returned unexpected answer: %s',
                           qname, dns.rdatatype.to_text(rdataset.rdtype), repr(ex))
-            logging.debug('expected:\n%s\ngot:\n%s', 'NOERROR', answer_rdataset)
-            return 1
+            continue
 
         answer_rdataset = dns.rdataset.Rdataset(dns.rdataclass.IN, rdataset.rdtype)
         answer_rdataset.update_ttl(rdataset.ttl)
